@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
+    public float sprintSpeedIncrease;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
     private SpriteRenderer sp;
+    private bool isRunning;
 
     private void Awake()
     {
@@ -37,5 +39,17 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetFloat("MoveSpeed",Mathf.Max(Mathf.Abs(moveInput.x),Mathf.Abs(moveInput.y)));
         rb.velocity = moveInput * moveSpeed;
+
+        //running check
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            moveSpeed += sprintSpeedIncrease;
+            isRunning = true;
+        } 
+        else if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            moveSpeed -= sprintSpeedIncrease;
+            isRunning = false;
+        }
+
+        animator.SetBool("isRunning",isRunning);
     }
 }
