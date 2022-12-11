@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         else if (moveInput.x > 0){
             sp.flipX = false;
         }
-        animator.SetFloat("MoveSpeed",Mathf.Max(Mathf.Abs(moveInput.x),Mathf.Abs(moveInput.y)));
+        animator.SetBool("isMoving",isMoving());
         rb.velocity = moveInput * moveSpeed;
 
         //running check
@@ -50,6 +50,13 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
 
-        animator.SetBool("isRunning",isRunning);
+        animator.SetBool("isRunning",isRunning && isMoving());
     }
+
+    bool isMoving()
+    {
+        float movement = Mathf.Max(Mathf.Abs(moveInput.x), Mathf.Abs(moveInput.y));
+        return (movement > 0);
+    }
+
 }
