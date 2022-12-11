@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        //sp = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -40,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
-        animator.SetBool("isMoving",isMoving());
+        animator.SetBool("isMoving",IsMoving());
         rb.velocity = moveInput * moveSpeed;
 
         //running check
@@ -53,10 +52,10 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
 
-        animator.SetBool("isRunning",isRunning && isMoving());
+        animator.SetBool("isRunning",isRunning && IsMoving());
     }
 
-    bool isMoving()
+    bool IsMoving()
     {
         float movement = Mathf.Max(Mathf.Abs(moveInput.x), Mathf.Abs(moveInput.y));
         return (movement > 0);
