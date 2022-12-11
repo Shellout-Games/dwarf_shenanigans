@@ -6,17 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
     public float sprintSpeedIncrease;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
-    private SpriteRenderer sp;
     private bool isRunning;
+    private bool facingRight = true;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();
+        //sp = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -31,12 +32,14 @@ public class PlayerMovement : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput.Normalize();
-        if (moveInput.x < 0) {
-            sp.flipX = true;
+        //flip when going left or right
+        if (moveInput.x < 0 && facingRight) {
+            Flip();
         }
-        else if (moveInput.x > 0){
-            sp.flipX = false;
+        else if (moveInput.x > 0 && !facingRight){
+            Flip();
         }
+
         animator.SetBool("isMoving",isMoving());
         rb.velocity = moveInput * moveSpeed;
 
@@ -59,4 +62,11 @@ public class PlayerMovement : MonoBehaviour
         return (movement > 0);
     }
 
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        facingRight = !facingRight;
+    }
 }
