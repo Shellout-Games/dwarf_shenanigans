@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class SmoothCameraFollow : MonoBehaviour
@@ -16,4 +17,9 @@ public class SmoothCameraFollow : MonoBehaviour
         Vector3 movePosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, damping);
     }
+
+    public void setTarget(Transform target) {
+        this.target = target;
+    }
+    
 }

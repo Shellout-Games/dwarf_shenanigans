@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public float moveSpeed;
     public float sprintSpeedIncrease;
@@ -15,19 +16,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    void Start() {
+        // set camera to its position if owner
+        if (IsOwner)  
+            Camera.main.GetComponent<SmoothCameraFollow>().setTarget(transform);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+        
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput.Normalize();
