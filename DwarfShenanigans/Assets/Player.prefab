@@ -127,9 +127,9 @@ GameObject:
   - component: {fileID: 848534899545694348}
   - component: {fileID: 848534899545694351}
   - component: {fileID: -5516159016164085787}
-  - component: {fileID: 2719283542961420723}
-  - component: {fileID: 7349860957544623260}
-  - component: {fileID: 4699364463424865379}
+  - component: {fileID: 6665411832177160649}
+  - component: {fileID: 8036387599601775979}
+  - component: {fileID: -6296315160144608439}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -355,7 +355,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &2719283542961420723
+--- !u!114 &6665411832177160649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 848534899545698166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -376,12 +376,12 @@ MonoBehaviour:
   SyncScaleX: 1
   SyncScaleY: 0
   SyncScaleZ: 0
-  PositionThreshold: 0.01
+  PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 0
---- !u!114 &7349860957544623260
+--- !u!114 &8036387599601775979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4699364463424865379
+--- !u!114 &-6296315160144608439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 848534899545698166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: ad8deae8091111f4eb30a56c1f4e0d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []

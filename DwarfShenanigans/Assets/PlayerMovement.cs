@@ -16,15 +16,15 @@ public class PlayerMovement : NetworkBehaviour
 
     private void Awake()
     {
-        
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
 
-    void Start() {
+    void Start()
+    {
         // set camera to its position if owner
-        if (IsOwner)  
+        if (IsOwner)
             Camera.main.GetComponent<SmoothCameraFollow>().setTarget(transform);
     }
 
@@ -32,32 +32,44 @@ public class PlayerMovement : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
-        
+
+        //get inputs
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput.Normalize();
+
+        Move(moveInput);
+
+    }
+
+    private void Move(Vector2 moveInput)
+    {
         //flip when going left or right
-        if (moveInput.x < 0 && facingRight) {
+        if (moveInput.x < 0 && facingRight)
+        {
             Flip();
         }
-        else if (moveInput.x > 0 && !facingRight){
+        else if (moveInput.x > 0 && !facingRight)
+        {
             Flip();
         }
 
-        animator.SetBool("isMoving",IsMoving());
+        animator.SetBool("isMoving", IsMoving());
         rb.velocity = moveInput * moveSpeed;
 
         //running check
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
             moveSpeed += sprintSpeedIncrease;
             isRunning = true;
-        } 
-        else if (Input.GetKeyUp(KeyCode.LeftShift)) {
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             moveSpeed -= sprintSpeedIncrease;
             isRunning = false;
         }
 
-        animator.SetBool("isRunning",isRunning && IsMoving());
+        animator.SetBool("isRunning", isRunning && IsMoving());
     }
 
     bool IsMoving()
@@ -73,4 +85,5 @@ public class PlayerMovement : NetworkBehaviour
         gameObject.transform.localScale = currentScale;
         facingRight = !facingRight;
     }
+
 }
