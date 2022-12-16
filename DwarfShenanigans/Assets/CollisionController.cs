@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollisionController : MonoBehaviour
 {
-    public WallHealth wallhealth;
+    public WallHealth wallHealth;
     public int damage = 3;
 
     void Start()
@@ -17,11 +17,11 @@ public class CollisionController : MonoBehaviour
     
     }
 
-    private void OnCollisionEnter2D(Collision2d collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "BreakWall")
         {
-            wallHealth.TakeDamage(damage);
+            collision.gameObject.GetComponent<WallHealth>().TakeDamage(damage);
         }
             
     }
