@@ -17,11 +17,6 @@ public class WallHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
-        {
-            TakeDamage(4);
-        }
-
         if (currentHealth < 0)
         {
             Destroy(gameObject);
@@ -29,7 +24,7 @@ public class WallHealth : MonoBehaviour
     }
 
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     { 
         currentHealth -= damage;
     }
