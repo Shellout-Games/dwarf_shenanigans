@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rotation : MonoBehaviour
+public class camerarotate : MonoBehaviour
 {
-
+    // Update is called once per frame
     public Transform cameraJig;
     public float rotateSpeed;
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKey(KeyCode.E))
         {
@@ -21,5 +20,4 @@ public class rotation : MonoBehaviour
             transform.RotateAround(cameraJig.position, -Vector3.up, rotateSpeed * Time.deltaTime);
         }
     }
-
 }

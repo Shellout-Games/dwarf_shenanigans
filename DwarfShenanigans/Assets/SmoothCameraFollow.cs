@@ -10,6 +10,8 @@ public class SmoothCameraFollow : MonoBehaviour
    
     private Vector3 velocity = Vector3.zero;
 
+    public float degreesPerSec = 360f;
+
     // Update is called once per frame
     void FixedUpdate()
     {
