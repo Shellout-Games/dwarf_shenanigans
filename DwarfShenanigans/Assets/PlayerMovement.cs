@@ -84,6 +84,28 @@ public class PlayerMovement : NetworkBehaviour
         currentScale.x *= -1;
         gameObject.transform.localScale = currentScale;
         facingRight = !facingRight;
+
+        if (IsOwner)
+        {
+            if (!IsServer)
+                FlipServerRpc();
+            else
+                FlipClientRpc();
+        }
+        
+    }
+
+    [ServerRpc]
+    void FlipServerRpc()
+    {
+        Flip();
+    }
+
+    [ClientRpc]
+    void FlipClientRpc()
+    {
+        if (!IsOwner)
+            Flip();
     }
 
 }
