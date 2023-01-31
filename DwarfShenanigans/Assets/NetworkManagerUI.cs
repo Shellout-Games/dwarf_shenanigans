@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,16 +12,20 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private Button hostBtn;
     [SerializeField] private Button joinBtn;
     [SerializeField] private TMP_InputField joinCodeFld;
+    [SerializeField] private TMP_Text joinCodeUi;
 
     private void Awake()
     {
-        hostBtn.onClick.AddListener(() => { 
-            testRelay.CreateRelay(); 
+        hostBtn.onClick.AddListener(() => {
+            testRelay.CreateRelay();
+
         });
 
         joinBtn.onClick.AddListener(() => { 
-            testRelay.JoinRelay(joinCodeFld.text); 
+                testRelay.JoinRelay(joinCodeFld.text);
+            ;
         });
 
+        
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -11,6 +12,10 @@ using UnityEngine;
 
 public class TestRelay : MonoBehaviour
 {
+
+    [SerializeField] private JoinCodeUIScript JoinCodeUIScript;
+    [SerializeField] private GameObject NetworkManagerUI;
+
     // Start is called before the first frame update
     async void Start()
     {
@@ -38,6 +43,9 @@ public class TestRelay : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
             NetworkManager.Singleton.StartHost();
+
+            JoinCodeUIScript.setUICode(joinCode);
+            NetworkManagerUI.SetActive(false);
         } 
         catch (RelayServiceException e)
         {
@@ -45,6 +53,7 @@ public class TestRelay : MonoBehaviour
         }
         
     }
+
 
     public async void JoinRelay(string joinCode)
     {
@@ -57,6 +66,11 @@ public class TestRelay : MonoBehaviour
             NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
             NetworkManager.Singleton.StartClient();
+            NetworkManagerUI.SetActive(false);
+        }
+        catch (ArgumentNullException e)
+        {
+            Debug.Log("Empty Join Code: " + e);
         }
         catch (RelayServiceException e)
         {
